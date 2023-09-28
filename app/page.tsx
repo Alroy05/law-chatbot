@@ -24,10 +24,12 @@ export default function Home() {
     ]);
     setMessage("");
     setLoading(true);
+    const messageJSON =  JSON.stringify({ query: message, history: history })
+    console.log(messageJSON);
     fetch("/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ query: message, history: history }),
+      body: messageJSON,
     })
       .then(async (res) => {
         const r = await res.json();
