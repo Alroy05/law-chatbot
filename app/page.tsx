@@ -62,19 +62,25 @@ export default function Home() {
   }, [history]);
 
   return (
-    <main className="h-screen bg-white p-6 flex flex-col">
-      <div className="flex flex-col gap-8 w-full items-center flex-grow max-h-full">
-        <h1 className=" text-4xl text-transparent font-extralight bg-clip-text bg-gradient-to-r from-violet-800 to-fuchsia-500">
-          IND chat
-        </h1>
+    <main className="h-screen bg-[#0B141A] p-6 flex flex-col">
+      <div className="flex flex-col gap-6 w-full items-center flex-grow max-h-full">
+        <div className="flex flex-col items-start sm:items-center">
+          <h1 className=" text-4xl font-semibold text-white bg-clip-text py-2 ">
+            Law Chatbot Prototype
+          </h1>
+          <h2 className="text-md font-normal text-gray-400">
+            Get your queries solved
+          </h2>
+        </div>
+        
         <form
-          className="rounded-2xl border-purple-700 border-opacity-5  border lg:w-3/4 flex-grow flex flex-col bg-[url('/images/bg.png')] bg-cover max-h-full overflow-clip"
+          className="rounded-2xl   flex-grow flex flex-col bg-[#111B21] max-h-full overflow-clip"
           onSubmit={(e) => {
             e.preventDefault();
             handleClick();
           }}
         >
-          <div className="overflow-y-scroll flex flex-col gap-5 p-10 h-full">
+          <div className="overflow-y-scroll no-scrollbar flex flex-col gap-5 p-10 h-full">
             {history.map((message: Message, idx) => {
               const isLastMessage = idx === history.length - 1;
               switch (message.role) {
@@ -86,11 +92,11 @@ export default function Home() {
                       className="flex gap-2"
                     >
                       <img
-                        src="images/assistant-avatar.png"
+                        src="images/bot-avatar.png"
                         className="h-12 w-12 rounded-full"
                       />
-                      <div className="w-auto max-w-xl break-words bg-white rounded-b-xl rounded-tr-xl text-black p-6 shadow-[0_10px_40px_0px_rgba(0,0,0,0.15)]">
-                        <p className="text-sm font-medium text-violet-500 mb-2">
+                      <div className="w-auto max-w-xl break-words bg-[#202C33] rounded-b-xl rounded-tr-xl text-white p-6 shadow-[0_10px_40px_0px_rgba(0,0,0,0.15)]">
+                        <p className="text-sm font-medium text-[#53BDEB] mb-2">
                           AI assistant
                         </p>
                         {message.content}
@@ -119,12 +125,13 @@ export default function Home() {
                 case "user":
                   return (
                     <div
-                      className="w-auto max-w-xl break-words bg-white rounded-b-xl rounded-tl-xl text-black p-6 self-end shadow-[0_10px_40px_0px_rgba(0,0,0,0.15)]"
+                      className="w-auto max-w-xl break-words bg-[#202C33] rounded-b-xl rounded-tl-xl text-white p-6 self-end shadow-[0_10px_40px_0px_rgba(0,0,0,0.15)]"
                       key={idx}
                       ref={isLastMessage ? lastMessageRef : null}
                     >
-                      <p className="text-sm font-medium text-violet-500 mb-2">
+                      <p className="text-sm font-medium text-[#06CF9C] mb-2">
                         You
+                        {/* #af6dda */}
                       </p>
                       {message.content}
                     </div>
@@ -137,7 +144,7 @@ export default function Home() {
                   src="images/assistant-avatar.png"
                   className="h-12 w-12 rounded-full"
                 />
-                <div className="w-auto max-w-xl break-words bg-white rounded-b-xl rounded-tr-xl text-black p-6 shadow-[0_10px_40px_0px_rgba(0,0,0,0.15)]">
+                <div className="w-auto max-w-xl break-words bg-[#202C33] rounded-b-xl rounded-tr-xl text-white p-6 shadow-[0_10px_40px_0px_rgba(0,0,0,0.15)]">
                   <p className="text-sm font-medium text-violet-500 mb-4">
                     AI assistant
                   </p>
@@ -148,14 +155,14 @@ export default function Home() {
           </div>
 
           {/* input area */}
-          <div className="flex sticky bottom-0 w-full px-6 pb-6 h-24">
-            <div className="w-full relative">
+          <div className="flex sticky justify-center bottom-0 w-full px-6 pb-6 h-20">
+            <div className="w-full relative ">
               <textarea
                 aria-label="chat input"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="Type a message"
-                className="w-full h-full resize-none rounded-full border border-slate-900/10 bg-white pl-6 pr-24 py-[25px] text-base placeholder:text-slate-400 focus:border-violet-500 focus:outline-none focus:ring-4 focus:ring-violet-500/10 shadow-[0_10px_40px_0px_rgba(0,0,0,0.15)]"
+                className="w-full h-full no-scrollbar text-white resize-none rounded-lg border border-slate-900/10 bg-[#2A3942] pl-6 pr-24 py-3 pt-4 text-base placeholder:text-slate-300 focus:outline-none focus:ring-4 focus:ring-blue-500/10  shadow-[0_10px_40px_0px_rgba(0,0,0,0.15)]"
                 onKeyDown={(e) => {
                   if (e.key === "Enter" && !e.shiftKey) {
                     e.preventDefault();
@@ -168,7 +175,7 @@ export default function Home() {
                   e.preventDefault();
                   handleClick();
                 }}
-                className="flex w-14 h-14 items-center justify-center rounded-full px-3 text-sm  bg-violet-600 font-semibold text-white hover:bg-violet-700 active:bg-violet-800 absolute right-2 bottom-2 disabled:bg-violet-100 disabled:text-violet-400"
+                className="flex w-11 h-11 items-center justify-center rounded-full px-3 text-sm   bg-slate-100 font-semibold text-gray-700 hover:bg-slate-200 active:bg-slate-300 absolute right-2 bottom-2 disabled:bg-slate-50 disabled:text-gray-500"
                 type="submit"
                 aria-label="Send"
                 disabled={!message || loading}
