@@ -10,7 +10,7 @@ export default function Home() {
     {
       role: "assistant",
       content:
-        "Hello! Ask me legal questions.",
+        "Hello! Ask me legal questions related immigration in Netherlands",
     },
   ]);
   const lastMessageRef = useRef<HTMLDivElement | null>(null);
@@ -62,13 +62,13 @@ export default function Home() {
   }, [history]);
 
   return (
-    <main className="h-screen bg-[#0B141A] p-6 flex flex-col">
+    <main className="h-screen bg-[#111B21] sm:bg-[#0B141A] p-4 sm:p-6 flex flex-col">
       <div className="flex flex-col gap-6 w-full items-center flex-grow max-h-full">
-        <div className="flex flex-col items-start sm:items-center">
-          <h1 className=" text-4xl font-semibold text-white bg-clip-text py-2 ">
+        <div className="flex flex-col self-start sm:self-center items-start sm:items-center">
+          <h1 className=" text-3xl sm:text-4xl font-semibold text-white bg-clip-text py-2 ">
             Law Chatbot Prototype
           </h1>
-          <h2 className="text-md font-normal text-gray-400">
+          <h2 className="text-sm sm:text-md font-normal text-gray-400">
             Get your queries solved
           </h2>
         </div>
@@ -80,7 +80,7 @@ export default function Home() {
             handleClick();
           }}
         >
-          <div className="overflow-y-scroll no-scrollbar flex flex-col gap-5 p-10 h-full">
+          <div className="overflow-y-scroll no-scrollbar flex flex-col sm:w-[450px] md:w-[700px] gap-5 p-4 sm:p-6 h-full">
             {history.map((message: Message, idx) => {
               const isLastMessage = idx === history.length - 1;
               switch (message.role) {
@@ -93,7 +93,7 @@ export default function Home() {
                     >
                       <img
                         src="images/bot-avatar.png"
-                        className="h-12 w-12 rounded-full"
+                        className="h-8 w-8 sm:h-12 sm:w-12 rounded-full"
                       />
                       <div className="w-auto max-w-xl break-words bg-[#202C33] rounded-b-xl rounded-tr-xl text-white p-6 shadow-[0_10px_40px_0px_rgba(0,0,0,0.15)]">
                         <p className="text-sm font-medium text-[#53BDEB] mb-2">
@@ -155,7 +155,7 @@ export default function Home() {
           </div>
 
           {/* input area */}
-          <div className="flex sticky justify-center bottom-0 w-full px-6 pb-6 h-20">
+          <div className="flex sticky justify-center bottom-0 w-full px-2 sm:px-6 pb-2 sm:pb-6 h-20">
             <div className="w-full relative ">
               <textarea
                 aria-label="chat input"
