@@ -10,7 +10,7 @@ export default function Home() {
     {
       role: "assistant",
       content:
-        "Hello! Ask me legal questions about immigration to the Netherlands.",
+        "Hello! Ask me legal questions.",
     },
   ]);
   const lastMessageRef = useRef<HTMLDivElement | null>(null);
