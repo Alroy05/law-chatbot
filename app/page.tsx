@@ -13,19 +13,24 @@ export default function Home() {
         "Hello! Ask me question Indian Penal Code",
     },
   ]);
+
   const lastMessageRef = useRef<HTMLDivElement | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleClick = () => {
     if (message == "") return;
+
     setHistory((oldHistory) => [
       ...oldHistory,
       { role: "user", content: message },
     ]);
+
     setMessage("");
     setLoading(true);
+
     const messageJSON =  JSON.stringify({ query: message, history: history })
     console.log(messageJSON);
+
     fetch("/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -33,8 +38,10 @@ export default function Home() {
     })
       .then(async (res) => {
         const r = await res.json();
+
         setHistory((oldHistory) => [...oldHistory, r]);
         setLoading(false);
+        
       })
       .catch((err) => {
         alert(err);
